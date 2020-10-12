@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1177</width>
+    <height>594</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <kerning>true</kerning>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>280</y>
+      <width>1051</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButton_1">
+       <property name="text">
+        <string>Polsko-Angielski</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Polsko-Niemiecki</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="text">
+        <string>Polsko-Francuski</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="text">
+        <string>Polsko-Włoski</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>1191</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_title">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>TŁUMACZ</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QComboBox" name="comboBox_choose_language">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>160</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>English</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Polski</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Français</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Deutsch</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Italiana</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_choose_language">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>160</y>
+      <width>641</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="text">
+     <string>Wybierz język, z którego chesz tłumaczyć:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
