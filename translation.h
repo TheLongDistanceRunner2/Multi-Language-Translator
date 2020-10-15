@@ -51,7 +51,6 @@ private:
     QSqlDatabase _sql;
     QString button_translate_text;
 
-    //pomocniczy String:
     QString to_return;
 
 };

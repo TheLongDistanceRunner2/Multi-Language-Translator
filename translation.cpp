@@ -10,7 +10,7 @@ Translation::Translation(QString input_language, QString output_language, QStrin
 {
     ui->setupUi(this);
 
-    // ustawiamy początkowe wartości:
+    // set start values:
     this->input_language = input_language;
     this->output_language = output_language;
     this->title_text = title_text;
@@ -18,7 +18,7 @@ Translation::Translation(QString input_language, QString output_language, QStrin
     this->table_name = table_name;
     this->button_translate_text = button_translate_text;
 
-    // dwa dolne pola tekstowe ustawiamy początkowo na puste:
+    // show no text on bottom labels at the beginning:
     ui->label_3_result->setText("");
     ui->label_2_added_to_database->setText("");
 
@@ -42,16 +42,13 @@ void Translation::on_pushButton_translate_clicked()
     set_text(ui->lineEdit_enter_text->text());
     QString translation = "";
 
-    //===========================================================================================
-    //===========================================================================================
-    // przyciski dla wersji English:
-
+    // buttons for English version:
     if( (input_language == "en" && output_language == "pol")
         || (input_language == "en" && output_language == "ger")
         || (input_language == "en" && output_language == "fre")
         || (input_language == "en" && output_language == "ita") )
     {
-        // gdy wpisano cokolwiek:
+        // if typed some text:
         if(text != "")
         {
             translation_logic("processing...", "You cannot use \" @ # etc. symbols", "Translation not found");
@@ -61,17 +58,13 @@ void Translation::on_pushButton_translate_clicked()
             ui->label_3_result->setText("You haven't entered anything yet!");
         }
     }
-
-    //=======================================================================================================
-    //=======================================================================================================
-    // przyciski dla wersji Polski:
-
+    // buttons for Polish version:
     else if ( (input_language == "pol" && output_language == "en")
                 || (input_language == "pol" && output_language == "ger")
                 || (input_language == "pol" && output_language == "fre")
                 || (input_language == "pol" && output_language == "ita") )
     {
-        // gdy wpisano cokolwiek:
+        // if typed some text:
         if(text != "")
         {
             translation_logic("przetwarzanie...", "Nie wolno wpisywać symboli \" @ # etc. ", "Nie znaleziono tłumaczenia");
@@ -81,17 +74,13 @@ void Translation::on_pushButton_translate_clicked()
             ui->label_3_result->setText("Nie wpisano żadnego tekstu!");
         }
     }
-
-    //=======================================================================================================
-    //=======================================================================================================
-    // przyciski dla wersji Francais:
-
+    // buttons for French version:
     else if ( (input_language == "fre" && output_language == "pol")
                 || (input_language == "fre" && output_language == "ger")
                 || (input_language == "fre" && output_language == "en")
                 || (input_language == "fre" && output_language == "ita") )
     {
-        // gdy wpisano cokolwiek:
+        // if typed some text
         if(text != "")
         {
             translation_logic("traitement...", "Les symboles \" @ # etc. ne sont pas autorisés", "Traduction non trouvée");
@@ -101,17 +90,13 @@ void Translation::on_pushButton_translate_clicked()
             ui->label_3_result->setText("Aucun test entré!");
         }
     }
-
-    //=======================================================================================================
-    //=======================================================================================================
-    // przyciski dla wersji Deutsch:
-
+    // buttons for German version:
     else if ( (input_language == "ger" && output_language == "pol")
                 || (input_language == "ger" && output_language == "en")
                 || (input_language == "ger" && output_language == "fre")
                 || (input_language == "ger" && output_language == "ita") )
     {
-        // gdy wpisano cokolwiek:
+        // if typed some text
         if(text != "")
         {
             translation_logic("verarbeitung...", "Symbole \" @ # etc. sind nicht erlaubt", "Übersetzung nicht gefunden");
@@ -121,16 +106,13 @@ void Translation::on_pushButton_translate_clicked()
             ui->label_3_result->setText("Du hast nicht Text eingegeben!");
         }
     }
-
-    //=======================================================================================================
-    //=======================================================================================================
-    // przyciski dla wersji Italiana:
-
+    // buttons for Italian version:
     else if ( (input_language == "ita" && output_language == "en")
                 || (input_language == "ita" && output_language == "ger")
                 || (input_language == "ita" && output_language == "fre")
                 || (input_language == "ita" && output_language == "pol") )
     {
+        // if typed some text
         if(text != "")
         {
             translation_logic("lavorazione...", "I simboli \" @ # etc. non sono ammessi", "Nessun testo inserito!");
@@ -144,7 +126,6 @@ void Translation::on_pushButton_translate_clicked()
     {
         ui->label_3_result->setText("");
     }
-
 }
 
 void Translation::set_text(QString text)
@@ -157,7 +138,6 @@ bool Translation::search_in_table()
     this->to_return = "";
     QString translated_text = "";
     QString entered_text = text;
-    //qDebug() << "text: " << text;
 
     QSqlQuery _query(_sql);
     _query.clear();
@@ -165,7 +145,6 @@ bool Translation::search_in_table()
     int rows = -1;
 
     QString execute = "SELECT COUNT(*) FROM tabela WHERE (input_language='" + input_language + "') AND (output_language='" + output_language + "') AND (entered_text='" + entered_text + "');";
-    //qDebug() << "String po zbindowaniu: " << execute;
     _query.prepare(execute);
     _query.exec();
 
@@ -175,35 +154,31 @@ bool Translation::search_in_table()
     }
     else
     {
-        qDebug() << _query.lastError();
         rows = 0;
     }
 
-    // gdy znaleziono tłumaczenie w baze, przekaż je do zmiennej to_return:
+    // if found translation in database, pass it to to_return variable:
     if(rows == 1)
     {
-        // przeszukujemy baze by wyłluskać to tłumaczenie:
+        // search database to get translation:
         _query.exec("SELECT translation FROM tabela WHERE input_language='" + input_language +
                     "' AND output_language='" + output_language +
                     "' AND entered_text='" + entered_text + "';");
-         //qDebug() << "isActive: przeszukanie bazy by znaleźć tłumaczenie" << _query.isActive();
         _query.next();
         translated_text = _query.value(0).toString();
         _query.clear();
 
-        // przekazujemy tekst do zmiennej to_return:
+        // pass text to to_return variable:
         this->to_return = translated_text.toUtf8();
 
         return true;
     }
     else if(rows == 0)
     {
-        //qDebug() << " -- >> NIE ZNALEZIONO TŁUMACZENIA W BAZIE...";
         return false;
     }
     else
     {
-        //qDebug() << "NIC SIE NIE WYKONALO";
         return false;
     }
 }
@@ -213,47 +188,40 @@ QString Translation::translte()
         QString _q = this->text;
         QString _langpair = this->input_language + "|" + this->output_language;
 
-        // tworzymy URL:
+        // create URL:
         QString url = QString("https://api.mymemory.translated.net/get?q=%1&langpair=%2").arg(_q).arg(_langpair);
 
-        // tworzymy połączenie:
+        // create network connection:
         QNetworkAccessManager manager;
         QNetworkRequest request(url);
         QNetworkReply *reply = manager.get(request);
 
-        // odbieramy dane od API:
+        // get data from API:
         do
         {
             QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
         }
         while(!reply->isFinished());
 
-        //=============================================================
-        // parsowanie odebranego JSONa:
-
+        // parse JSON:
         QString _response_data = reply->readAll();
         QJsonDocument document = QJsonDocument::fromJson(_response_data.toUtf8());
 
-        // tworzymy obiekt:
         QJsonObject jObject = document.object();
 
-        // sczytujemy wartość dla responseData:
+        // read value for responseData:
         QJsonValue value = jObject.value(QString("responseData"));
-        //qWarning() << value;
 
-        // sczytaj dane tego obiektu (responseData):
+        // read data of this object (responseData):
         QJsonObject item = value.toObject();
-        //qWarning() << tr("QJsonObject of translatedText: ") << item["translatedText"];
 
-        // wyciągamy dane z tego sub-obiektu:
-        //qWarning() << tr("QJsonObject[responseData] of translatedText: ") << item["translatedText"];
+        // get data of this sub-object:
         QJsonValue subobj = item["translatedText"];
-        //qWarning() << subobj.toString();
 
-        // przypisujemy wartosc subobj do zmiennej _translation:
+        // assign subobj data to variable _translation:
         QString _traslation = subobj.toString();
 
-        // czyścimy zapytanie:
+        // remember to delete reply:
         delete reply;
 
         return _traslation;
@@ -268,23 +236,15 @@ void Translation::add_to_table(QString add)
     _query.prepare(execute);
     _query.exec();
     _query.next();
-    //====================================================================================  <<---
-    // DEBUGOWANIE:
-    //qDebug() << "isActive: Dodawanie do tabeli " << _query.isActive();
-    //qDebug() << "Ostatnie poprawne zapytanie SQL: " << _query.executedQuery();
     _query.clear();
-
-    //====================================================================================  <<---
-    // DEBUGOWANIE:
-    //qDebug() << " -- >> DODANO DO TABELI";
 }
 
 void Translation::translation_logic(QString processing_text, QString inappropriate_text, QString not_found_text)
 {
-    // ustawiamy wiadomość o wyszukiwaniu tłumaczenia:
+    // set text informing about searching for translation:
     ui->label_3_result->setText(processing_text);
 
-    // gdy wpisany tekst zawiera nieodpowiednie znaki:
+    // if entered text contains inappropriate characters:
     if((text.contains("\"", Qt::CaseInsensitive) == true) ||
        (text.contains(":", Qt::CaseInsensitive) == true)  ||
        (text.contains("/", Qt::CaseInsensitive) == true)  ||
@@ -317,20 +277,17 @@ void Translation::translation_logic(QString processing_text, QString inappropria
     }
     else
     {
-        // ===================================================================
-        // TŁUMACZENIE TEKSTU:
-
         bool is_found = search_in_table();
 
-        // gdy znaleziono tłumaczenie w lokalnej bazie, wyświetl je:
+        // if found translation in local database, show it:
         if(is_found == true)
         {
            ui->label_3_result->setText(to_return);
         }
-        // gdy nie znaleziono, połącz się z API i przetłumacz:
+        // if not, use API to get it:
         else
         {
-            // sprawdzamy czy jest dostep do internetu:
+            // check network connection:
             QNetworkAccessManager nam;
             QNetworkRequest req(QUrl("http://www.google.com"));
             QNetworkReply *reply = nam.get(req);
@@ -338,33 +295,31 @@ void Translation::translation_logic(QString processing_text, QString inappropria
             connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
             loop.exec();
 
-            // gdy jest połączenie:
+            // if there's access to internet:
             if(reply->bytesAvailable())
             {
                 QString translation = translte();
 
-                // gdy w API nie ma tłumaczenia:
+                // if API doesn't provide certain translation:
                 if(translation == this->text)
                 {
                      ui->label_3_result->setText(not_found_text);
                 }
-                // gdy znaleziono tłumaczenie:
+                // if translation is found:
                 else
                 {
-                    // dodajemy tłumaczenie do lokalnej bazy danych:
+                    // add translation to local database:
                     add_to_table(translation);
 
-                    // wyswietlamy:
+                    // and show it:
                     ui->label_3_result->setText(translation);
                 }
             }
-            // gdy nie ma połączenia:
+            // if there's no internet connection:
             else
             {
                 ui->label_3_result->setText("ERROR - NO INTERNET CONNECTION");
             }
-
         }
     }
 }
-

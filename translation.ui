@@ -43,13 +43,21 @@
         <height>0</height>
        </size>
       </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+      </property>
       <property name="text">
        <string>TextLabel</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_enter_text"/>
+     <widget class="QLineEdit" name="lineEdit_enter_text">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 201, 71);
+border-color: rgb(0, 0, 0);</string>
+      </property>
+     </widget>
     </item>
     <item alignment="Qt::AlignHCenter">
      <widget class="QPushButton" name="pushButton_translate">
@@ -58,6 +66,9 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(198, 105, 0);</string>
       </property>
       <property name="text">
        <string>PushButton</string>

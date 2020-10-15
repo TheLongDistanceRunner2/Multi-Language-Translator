@@ -18,6 +18,10 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 152, 0);</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
@@ -31,6 +35,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="pushButton_1">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(198, 105, 0);</string>
+       </property>
        <property name="text">
         <string>Polsko-Angielski</string>
        </property>
@@ -38,6 +45,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_2">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(198, 105, 0);</string>
+       </property>
        <property name="text">
         <string>Polsko-Niemiecki</string>
        </property>
@@ -45,6 +55,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_3">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(198, 105, 0);</string>
+       </property>
        <property name="text">
         <string>Polsko-Francuski</string>
        </property>
@@ -52,6 +65,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_4">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(198, 105, 0);</string>
+       </property>
        <property name="text">
         <string>Polsko-Włoski</string>
        </property>
@@ -77,6 +93,9 @@
          <pointsize>20</pointsize>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>TŁUMACZ</string>
        </property>
@@ -95,6 +114,12 @@
       <width>131</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">selection-background-color: rgb(198, 105, 0);
+alternate-background-color: rgb(255, 201, 71);
+selection-color: rgb(255, 201, 71);
+background-color: rgb(255, 201, 71);</string>
     </property>
     <item>
      <property name="text">
@@ -144,6 +169,27 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_database_error">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>460</y>
+      <width>331</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
