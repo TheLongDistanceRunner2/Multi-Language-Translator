@@ -5,5 +5,5 @@ The application uses MyMemory API for translating and saves already searched tra
 
 //===================================================
 
-Aplikacja desktopowa w Qt umożliwiająca tłumaczenie słów oraz tekstów w 5 językach: polskim, angielskim, niemieckim, włoskim oraz franuskim!
+Aplikacja desktopowa wykonana przy użyciu Qt, umożliwiająca tłumaczenie słów oraz tekstów w 5 językach: polskim, angielskim, niemieckim, włoskim oraz franuskim!
 Program podczas tłumaczenia korzysta z MyMemory API i zapisuje już wyszukane, przetłumaczone frazy w lokalnej bazie danych SQLite3.
